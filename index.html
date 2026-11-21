@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Up Studio</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Georgia', serif; background-color: #dcd7ce; color: #1a1a1a; line-height: 1.6; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background-color: #c9c4ba; border-bottom: 1px solid #b8b3a8; }
+        .logo { font-size: 22px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+        nav { font-family: Arial, sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        nav a { margin-left: 30px; text-decoration: none; color: #4a4a4a; }
+        
+        .hero { height: 85vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('hero.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; position: relative; min-height: 500px; }
+        .hero h1 { font-size: 64px; font-weight: 400; margin-bottom: 20px; letter-spacing: 4px; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
+        .hero p { font-size: 18px; letter-spacing: 3px; font-family: Arial, sans-serif; font-weight: 300; text-transform: uppercase; text-shadow: 1px 1px 10px rgba(0,0,0,0.7); }
+        
+        .services { display: flex; justify-content: space-around; padding: 60px 5%; background-color: #e0dcd3; text-align: center; border-bottom: 1px solid #c9c5bc; flex-wrap: wrap; gap: 20px; }
+        .services h4 { font-size: 16px; text-transform: uppercase; margin: 0 0 10px 0; color: #1a1a1a; }
+        .services p { font-size: 14px; color: #555; font-family: Arial, sans-serif; margin: 0; }
+        
+        .catalog { padding: 80px 5%; }
+        .catalog h2 { text-align: center; font-size: 38px; font-weight: 400; margin-bottom: 15px; color: #1a1a1a; }
+        
+        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; font-family: Arial, sans-serif; }
+        .filters button { padding: 12px 28px; background: transparent; border: 1px solid #8a867d; color: #4a4a4a; cursor: pointer; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; transition: 0.3s; }
+        .filters button.active { background: #2c2c2c; border-color: #2c2c2c; color: #fff; }
+        
+        #product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 40px; margin-top: 40px; }
+        .card { text-decoration: none; background-color: #f4f1eb; overflow: hidden; border: 1px solid #e0dcd3; display: block; cursor: pointer; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 400px; object-fit: cover; display: block; }
+        .card-content { padding: 25px; text-align: center; }
+        .card h3 { font-size: 20px; font-weight: 400; margin: 0 0 8px 0; color: #1a1a1a; }
+        .card p { font-size: 14px; color: #777; margin: 0 0 20px 0; font-family: Arial, sans-serif; text-transform: uppercase; }
+        .card span { display: inline-block; padding: 12px 30px; border: 1px solid #1a1a1a; color: #1a1a1a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-family: Arial, sans-serif; }
+        
+        footer { background-color: #1a1a1a; color: #fff; padding: 70px 5% 40px; text-align: center; }
+        footer h2 { font-size: 28px; font-weight: 400; margin-bottom: 15px; letter-spacing: 1px; }
+        footer .phone { font-size: 24px; color: #fff; text-decoration: none; margin-bottom: 30px; display: block; font-family: Arial, sans-serif; letter-spacing: 2px; }
+        footer .links { margin-top: 20px; }
+        footer .links a { color: #fff; text-decoration: none; margin: 0 20px; font-size: 13px; text-transform: uppercase; border-bottom: 1px solid #555; padding-bottom: 3px; font-family: Arial, sans-serif; }
+        footer .copy { margin-top: 50px; font-size: 12px; color: #666; font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+
+    <!-- ТУТ ТВОЙ НОМЕР -->
+    <script>
+        const CONFIG = {
+            phone: "+79998591413", 
+            phoneDisplay: "+7 (999) 859-14-13", 
+            tgNick: "your_tg_nickname" 
+        };
+    </script>
+
+    <header>
+        <div class="logo">Level Up Studio</div>
+        <nav>
+            <a href="#catalog">Каталог</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div style="position: relative; z-index: 1; padding: 20px;">
+            <h1>Искусство в деталях</h1>
+            <p>Авторские объекты для премиального интерьера</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <div><h4>Бесплатный замер</h4><p>Выезд дизайнера</p></div>
+        <div><h4>Изготовление</h4><p>Собственное производство</p></div>
+        <div><h4>Монтаж</h4><p>Установка под ключ</p></div>
+        <div><h4>Гарантия</h4><p>На все изделия</p></div>
+    </section>
+
+    <section id="catalog" class="catalog">
+        <h2>Наши работы</h2>
+        <div class="filters">
+            <button class="active" onclick="filterSelection('all', event)">Все изделия</button>
+            <button onclick="filterSelection('skal', event)">Скалы</button>
+            <button onclick="filterSelection('tables', event)">Столы и консоли</button>
+            <button onclick="filterSelection('sinks', event)">Раковины</button>
+            <button onclick="filterSelection('mirror', event)">Зеркала и панно</button>
+        </div>
+        <div id="product-grid"></div>
+    </section>
+
+    <footer id="contacts">
+        <h2>Свяжитесь с нами</h2>
+        <a href="#" id="phone-link" class="phone">Загрузка...</a>
+        <div class="links">
+            <a href="#" id="wa-link" target="_blank">WhatsApp</a>
+            <a href="#" id="tg-link" target="_blank">Telegram</a>
+        </div>
+        <p class="copy">&copy; 2026 Level Up Studio. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.getElementById('phone-link').href = 'tel:' + CONFIG.phone;
+        document.getElementById('phone-link').textContent = CONFIG.phoneDisplay;
+        document.getElementById('wa-link').href = 'https://wa.me/' + CONFIG.phone.replace(/[^0-9]/g, '');
+        document.getElementById('tg-link').href = 'https://t.me/' + CONFIG.tgNick;
+
+        // ВСЕ ТВОИ НАЗВАНИЯ ФАЙЛОВ ВПИСАНЫ КАК ЕСТЬ
+        const allPhotos = [
+            { src: "IMG_4544.png", cat: "skal", title: "Раковина-Скала «Брут»", desc: "Монолитный бетон" },
+            { src: "IMG_4529.png", cat: "skal", title: "Раковина-Скала", desc: "Бетон" },
+            { src: "plaster1.jpg", cat: "skal", title: "Панно «Скала»", desc: "Рельеф" },
+            { src: "plaster2.jpg", cat: "skal", title: "Панно «Скала II»", desc: "Рельеф" },
+            { src: "IMG_4266.jpeg", cat: "tables", title: "Стол «Скульптура»", desc: "Полимербетон" },
+            { src: "IMG_4267.jpeg", cat: "tables", title: "Стол «Арт»", desc: "Ручная работа" },
+            { src: "IMG_4272 2.jpeg", cat: "tables", title: "Стол «Монолит»", desc: "Бетон" },
+            { src: "IMG_4273.jpeg", cat: "tables", title: "Тумба «Камень»", desc: "Фактура" },
+            { src: "IMG_4274.jpeg", cat: "tables", title: "Стол «Брут»", desc: "Тяжелый бетон" },
+            { src: "IMG_4275.jpeg", cat: "tables", title: "Стол «Лофт»", desc: "Микроцемент" },
+            { src: "IMG_4289.jpeg", cat: "sinks", title: "Раковина «Скульптура»", desc: "Бетон" },
+            { src: "IMG_4440.jpeg", cat: "sinks", title: "Раковина «Скала II»", desc: "Бетон" },
+            { src: "IMG_4448.jpeg", cat: "sinks", title: "Раковина «Скульптура II»", desc: "Ручная" },
+            { src: "IMG_4471.jpeg", cat: "sinks", title: "Раковина «Форма»", desc: "Бетон" },
+            { src: "IMG_4504.jpeg", cat: "sinks", title: "Раковина «Арт»", desc: "Бетон" },
+            { src: "IMG_4506.jpeg", cat: "sinks", title: "Раковина «Минимал»", desc: "Бетон" },
+            { src: "IMG_4507.jpeg", cat: "sinks", title: "Раковина «Фактура»", desc: "Камень" },
+            { src: "IMG_4525.png", cat: "sinks", title: "Раковина «Колонна»", desc: "Монолит" },
+            { src: "IMG_4526.png", cat: "sinks", title: "Раковина «Колонна II»", desc: "Монолит" },
+            { src: "IMG_4527.png", cat: "sinks", title: "Раковина «Колонна III»", desc: "Монолит" },
+            { src: "IMG_4536.png", cat: "sinks", title: "Раковина «Глыба»", desc: "Монолит" },
+            { src: "IMG_4537.png", cat: "sinks", title: "Раковина «Глыба II»", desc: "Монолит" },
+            { src: "IMG_4539.jpeg", cat: "sinks", title: "Раковина «Волна»", desc: "Ручная" },
+            { src: "IMG_4540.jpeg", cat: "sinks", title: "Раковина «Волна II»", desc: "Ручная" },
+            { src: "IMG_4541.jpeg", cat: "sinks", title: "Раковина «Валун»", desc: "Смешанная техника" },
+            { src: "table2.jpg", cat: "sinks", title: "Раковина «Стол»", desc: "Бетон" },
+            { src: "IMG_4292.jpeg", cat: "mirror", title: "Панно «Спираль»", desc: "Рельеф" },
+            { src: "IMG_4293.jpeg", cat: "mirror", title: "Панно «Лабиринт»", desc: "Арт" },
+            { src: "IMG_4294.jpeg", cat: "mirror", title: "Панно «Травертин»", desc: "Фактура" }
+        ];
+
+        const grid = document.getElementById('product-grid');
+        let htmlBuffer = '';
+        
+        allPhotos.forEach(photo => {
+            const waLink = `https://wa.me/${CONFIG.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Здравствуйте! Интересует: ' + photo.title)}`;
+            htmlBuffer += `
+                <a href="${waLink}" target="_blank" class="card filterDiv ${photo.cat}">
+                    <img src="${photo.src}" alt="${photo.title}" onerror="this.style.display='none'">
+                    <div class="card-content">
+                        <h3>${photo.title}</h3>
+                        <p>${photo.desc}</p>
+                        <span>Узнать цену</span>
+                    </div>
+                </a>
+            `;
+        });
+        grid.innerHTML = htmlBuffer;
+
+        function filterSelection(c, e) {
+            let x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
+            }
+            let btns = document.querySelectorAll('.filters button');
+            btns.forEach(btn => btn.classList.remove('active'));
+            if(e) e.target.classList.add('active');
+        }
+        
+        window.addEventListener('load', () => {
+            filterSelection("all");
+            const firstBtn = document.querySelector('.filters button');
+            if(firstBtn) firstBtn.classList.add('active');
+        });
+    </script>
+</body>
+</html>
